@@ -1,0 +1,15 @@
+{
+  "name": "justincampbell-agent-plugins",
+  "owner": {
+    "name": "Justin Campbell"
+  },
+  "plugins": [
+    {
+      "name": "justincampbell",
+      "description": "Skills for Claude Code",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/local-review"]
+    }
+  ]
+}
