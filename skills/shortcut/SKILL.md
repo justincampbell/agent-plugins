@@ -60,24 +60,36 @@ short search is:blocked             # Blocked stories
 short story <id> -O
 ```
 
+## Workflow States
+
+To list all workflows and their states:
+
+```bash
+short workflows
+```
+
+Use the exact state name when updating: `short story <id> -s "State Name"`
+
 ## Creating Stories
 
 Required: title (`-t`) and either team (`-T`) + state (`-s`) or project (`-p`).
 
+**IMPORTANT**: Team names must use the full name as shown in Shortcut (e.g., `"Team Engineering"`, not `"Engineering"`). The `-T` flag does a prefix match and may match the wrong team if shortened.
+
 ```bash
 # With team and state
-short create -t "Story title" -T "Engineering" -s "Ready for Development"
+short create -t "Story title" -T "Team Engineering" -s "Ready for Development"
 
 # With project
 short create -t "Story title" -p "Project Name"
 
 # Full example with owner
-short create -t "Fix login bug" -T "Engineering" -s "In Development" -o myuser -y bug
+short create -t "Fix login bug" -T "Team Engineering" -s "In Development" -o myuser -y bug
 ```
 
 Options:
 - `-t` title (required)
-- `-T` team name
+- `-T` team name (only available at creation — cannot be changed via `short story`)
 - `-s` workflow state
 - `-p` project
 - `-o` owner(s), comma-separated
@@ -86,6 +98,32 @@ Options:
 - `-e` estimate
 - `--epic` epic id or name
 - `-l` label
+
+## Updating Stories
+
+The `short story <id>` command supports updating most fields but **not team**. To change a story's team after creation, use the API directly:
+
+```bash
+# Change team via API (requires team UUID)
+curl -s -X PUT \
+  -H "Content-Type: application/json" \
+  -H "Shortcut-Token: $SHORTCUT_API_TOKEN" \
+  "https://api.app.shortcut.com/api/v3/stories/<id>" \
+  -d '{"group_id":"<team-uuid>"}'
+```
+
+Available update flags for `short story`:
+- `-s` workflow state
+- `-o` owner(s)
+- `-t` title
+- `-d` description
+- `-y` type
+- `-e` estimate
+- `-c` comment
+- `-l` label
+- `--epic` epic
+- `-i` iteration
+- `-a` archived
 
 ## Search
 
