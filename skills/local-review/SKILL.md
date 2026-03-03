@@ -22,11 +22,13 @@ Tell the user the review UI is open. Instruct them to review the diff, add comme
 
 ## Step 2: Address review comments
 
-When the user pastes the review comments, address each concern:
+When the user pastes the review comments:
 
-1. Read each comment and the referenced code
-2. Make the requested changes (or explain why a change is unnecessary)
-3. Summarize what was addressed
+1. Group related comments into tasks — comments about the same topic, file, or change should be a single task rather than separate ones
+2. Create tasks using TaskCreate (subject: short description of the change, description: all related comments with file/line context)
+3. Work through tasks in order — mark each `in_progress` before starting, `completed` when done
+4. For each task: read the referenced code, make the requested change (or explain why it's unnecessary)
+5. After all tasks are complete, give a brief summary of what was addressed
 
 ## Reference
 
