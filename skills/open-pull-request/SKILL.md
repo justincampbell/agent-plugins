@@ -31,19 +31,20 @@ If there are uncommitted changes, ask the user what they'd like to commit before
 Run these commands to understand what's in the branch:
 
 ```bash
-git log main..HEAD
-git diff main...HEAD --stat
-git diff main...HEAD
+git fetch origin main
+git log origin/main..HEAD
+git diff origin/main...HEAD --stat
+git diff origin/main...HEAD
 ```
 
 Use this information to draft the PR title and body.
 
-### 3. Fetch and Rebase from main
+### 3. Rebase from origin/main
 
-Ensure the branch is up-to-date with origin/main:
+Ensure the branch is up-to-date with origin/main (already fetched in step 2):
 
 ```bash
-git fetch origin main && git rebase origin/main
+git rebase origin/main
 ```
 
 If there are merge conflicts:
