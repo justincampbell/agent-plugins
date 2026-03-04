@@ -30,7 +30,18 @@ ps -o args= -p $PPID 2>/dev/null || true
 
 If the output contains `--permission-mode`, extract the value (e.g. `--permission-mode plan`) to pass through to the forked session.
 
-### 3. Create the new pane or window
+### 3. Determine current session ID
+
+Find the most recently modified `.jsonl` file in the Claude project directory for the current working directory. The project directory path is derived by replacing all non-alphanumeric characters in `$PWD` with `-`.
+
+```bash
+project_dir=~/.claude/projects/$(echo "$PWD" | sed 's/[^a-zA-Z0-9]/-/g')
+ls -t "$project_dir"/*.jsonl | head -1 | xargs basename | sed 's/.jsonl//'
+```
+
+Store this UUID as the session ID to fork from.
+
+### 4. Create the new pane or window
 
 **If the user passed `window` as an argument:**
 
@@ -48,22 +59,24 @@ Use `mcp__tmux__split-pane` with horizontal direction on the current pane if the
 tmux split-window -h
 ```
 
-### 4. Start the forked conversation
+### 5. Start the forked conversation
 
 Build the command:
 
 ```
-claude --continue --fork-session
+claude --resume <session-id> --fork-session
 ```
+
+Where `<session-id>` is the UUID determined in step 3.
 
 Append `--permission-mode <mode>` if one was detected in step 2.
 
 Send the command to the new pane/window using `mcp__tmux__execute-command` if available, otherwise:
 
 ```bash
-tmux send-keys -t {new_pane_id} 'claude --continue --fork-session' Enter
+tmux send-keys -t {new_pane_id} 'claude --resume <session-id> --fork-session' Enter
 ```
 
-### 5. Report
+### 6. Report
 
 Tell the user the fork is running in the new pane/window. Be succinct.
