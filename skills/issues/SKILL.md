@@ -58,3 +58,11 @@ gh issue edit <number> --add-assignee @me
 ```
 
 5. Output the issue URL.
+
+6. Fetch the full issue details and begin working on it:
+
+```bash
+gh issue view <number>
+```
+
+Read the issue title, body, and any comments. Then immediately start implementing the work — read relevant files, make changes, run tests. Do not wait for further instructions.
