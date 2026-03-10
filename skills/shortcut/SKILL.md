@@ -76,6 +76,16 @@ Required: title (`-t`) and either team (`-T`) + state (`-s`) or project (`-p`).
 
 **IMPORTANT**: Team names must use the full name as shown in Shortcut (e.g., `"Team Engineering"`, not `"Engineering"`). The `-T` flag does a prefix match and may match the wrong team if shortened.
 
+### Determining the user's team
+
+When creating a story, **always look up the user's team dynamically** rather than guessing or using a default. To find the user's team:
+
+1. Get the user's member ID: `short api /member` → look for `"id"`
+2. Get all groups: `short api /groups` → find the group whose `member_ids` contains the user's member ID
+3. Use that group's `name` as the `-T` value
+
+If the user belongs to multiple groups, determine the most likely team by searching their recent stories (`short search owner:%self%`) and checking which team appears most frequently. Use that team as the default. Cache the result for the rest of the conversation.
+
 ```bash
 # With team and state
 short create -t "Story title" -T "Team Engineering" -s "Ready for Development"
