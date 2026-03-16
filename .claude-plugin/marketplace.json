@@ -9,7 +9,7 @@
       "description": "Skills for Claude Code",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/local-review"]
+      "skills": ["./skills/local-review", "./skills/agent-review"]
     }
   ]
 }
