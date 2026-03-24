@@ -6,10 +6,27 @@
   "plugins": [
     {
       "name": "justincampbell",
-      "description": "Skills for Claude Code",
-      "source": "./",
+      "description": "Developer workflow skills for Claude Code",
+      "source": "./plugins/justincampbell/",
       "strict": false,
-      "skills": ["./skills/local-review", "./skills/agent-review"]
+      "skills": [
+        "./skills/local-review",
+        "./skills/agent-review",
+        "./skills/open-pull-request",
+        "./skills/issues",
+        "./skills/tmux-fork"
+      ]
+    },
+    {
+      "name": "hardware",
+      "description": "Embedded development skills for ESP32, RP2040, and atopile",
+      "source": "./plugins/hardware/",
+      "strict": false,
+      "skills": [
+        "./skills/esp32",
+        "./skills/rp2040",
+        "./skills/atopile"
+      ]
     }
   ]
 }
