@@ -18,6 +18,12 @@
       ]
     },
     {
+      "name": "github-block-comments",
+      "description": "Block Claude from posting unsolicited comments/reviews to GitHub via gh CLI or GraphQL",
+      "source": "./plugins/github-block-comments/",
+      "strict": false
+    },
+    {
       "name": "hardware",
       "description": "Embedded development skills for ESP32, RP2040, and atopile",
       "source": "./plugins/hardware/",
