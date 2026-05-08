@@ -6,7 +6,8 @@
 set -euo pipefail
 
 ALLOW_PATTERNS=(
-  '@greptileai'
+  "--body[[:space:]]+[\"']@greptileai( review| re-review please| ♻️)?[\"']"
+  "body=[\"']@greptileai( review| re-review please| ♻️)?[\"']"
 )
 
 PATTERNS=(
@@ -37,7 +38,7 @@ if [[ -z "$COMMAND" ]]; then
 fi
 
 for pattern in "${ALLOW_PATTERNS[@]}"; do
-  if echo "$COMMAND" | grep -qE "$pattern"; then
+  if echo "$COMMAND" | grep -qE -e "$pattern"; then
     exit 0
   fi
 done

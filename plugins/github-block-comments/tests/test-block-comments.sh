@@ -116,11 +116,30 @@ assert_allow "git command" \
 assert_allow "gh pr list (not review)" \
   'gh pr list'
 
-assert_allow "gh pr comment with @greptileai (allowlisted)" \
+assert_allow "gh pr comment bare @greptileai" \
+  'gh pr comment 123 --body "@greptileai"'
+
+assert_allow "gh pr comment @greptileai review" \
   'gh pr comment 123 --body "@greptileai review"'
 
-assert_allow "gh api PR comment with @greptileai (allowlisted)" \
-  'gh api repos/org/repo/pulls/123/comments -f body="@greptileai please review"'
+assert_allow "gh pr comment @greptileai re-review please" \
+  'gh pr comment 123 --body "@greptileai re-review please"'
+
+assert_allow "gh pr comment @greptileai ♻️" \
+  'gh pr comment 123 --body "@greptileai ♻️"'
+
+assert_allow "gh api PR comment with bare @greptileai" \
+  'gh api repos/org/repo/pulls/123/comments -f body="@greptileai"'
+
+# Should block — @greptileai mention with extra prose is still an unsolicited comment
+assert_ask "gh pr comment @greptileai with status-update tail" \
+  'gh pr comment 29714 --body "@greptileai re-review please — rebased onto main to resolve conflicts, no logic changes."'
+
+assert_ask "gh pr comment @greptileai with leading prose" \
+  'gh pr comment 123 --body "Heads up @greptileai please re-review"'
+
+assert_ask "gh api PR comment @greptileai with prose" \
+  'gh api repos/org/repo/pulls/123/comments -f body="@greptileai please look at this — I changed X and Y"'
 
 echo
 echo "--- Results: $PASS passed, $FAIL failed ---"
