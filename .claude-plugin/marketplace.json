@@ -14,7 +14,9 @@
         "./skills/agent-review",
         "./skills/open-pull-request",
         "./skills/issues",
-        "./skills/tmux-fork"
+        "./skills/tmux-fork",
+        "./skills/quiesce",
+        "./skills/copy"
       ]
     },
     {
