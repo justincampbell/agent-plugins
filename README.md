@@ -28,3 +28,13 @@ Skills for Claude Code, organized as separate plugins.
 - `/hardware:esp32` — Develop, build, flash, and monitor ESP32 projects using ESP-IDF
 - `/hardware:rp2040` — Develop, build, flash, and monitor RP2040 projects using the Pico SDK
 - `/hardware:atopile` — Design electronic schematics and PCBs using atopile (hardware-as-code)
+
+### Hooks
+
+```
+/plugin install github-block-comments@justincampbell-agent-plugins
+/plugin install block-python-edits@justincampbell-agent-plugins
+```
+
+- `github-block-comments` — Block unsolicited GitHub comments/reviews via `gh` CLI or GraphQL
+- `block-python-edits` — Block inline Python (`python -c`, `python - <<EOF`) that writes files; use Read/Edit/Write instead

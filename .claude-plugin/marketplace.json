@@ -25,6 +25,12 @@
       "strict": false
     },
     {
+      "name": "block-python-edits",
+      "description": "Block Claude from editing files via inline Python scripts instead of the Read/Edit/Write tools",
+      "source": "./plugins/block-python-edits/",
+      "strict": false
+    },
+    {
       "name": "hardware",
       "description": "Embedded development skills for ESP32, RP2040, and atopile",
       "source": "./plugins/hardware/",
