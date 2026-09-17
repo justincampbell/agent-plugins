@@ -18,6 +18,7 @@ Skills for Claude Code, organized as separate plugins.
 - `/justincampbell:open-pull-request` — Open a pull request with proper git workflow conventions
 - `/justincampbell:issues` — Record ideas/bugs as GitHub issues and start work on them
 - `/justincampbell:tmux-fork` — Fork the current conversation into a new tmux pane or window
+- `/justincampbell:markdown` — Hand off a list to vim for review, then read back your edits
 
 ### Hardware / Embedded
 

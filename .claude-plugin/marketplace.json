@@ -15,7 +15,8 @@
         "./skills/issues",
         "./skills/tmux-fork",
         "./skills/quiesce",
-        "./skills/copy"
+        "./skills/copy",
+        "./skills/markdown"
       ]
     },
     {
